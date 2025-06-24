@@ -23,26 +23,44 @@ MACSLang é uma linguagem de programação imperativa e estruturada com as segui
 ### Sintaxe Básica
 
 #### Declaração de Variáveis
+````
 var : = ;
-
+````
 
 #### Entrada e Saída
-print(<expressão>); // Exibe no console input(<variável>); // Lê valor do usuário
-
+````
+print(<expressão>);
+// Exibe no console input(<variável>);
+// Lê valor do usuário
+````
 
 #### Estruturas Condicionais
-if (<condição>) { // bloco de código } else { // bloco alternativo }
-
+````
+if (<condição>) {
+// bloco de código 
+} else {
+// bloco alternativo 
+}
+````
 
 #### Laços de Repetição
-while (<condição>) { // bloco de código }
-
-for (<inicialização>; <condição>; ) { // bloco de código }
-
+````
+while (<condição>) {
+// bloco de código 
+}
+````
+````
+for (<inicialização>; <condição>; ){
+// bloco de código
+}
+````
 
 #### Funções
-func (): <tipo_retorno> { // bloco de código return ; }
-
+````
+func (): <tipo_retorno> {
+// bloco de código return;
+}
+````
 
 ### Operadores
 - Aritméticos: `+`, `-`, `*`, `/`, `%`
