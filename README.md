@@ -72,33 +72,37 @@ func (): <tipo_retorno> {
 O compilador MACSLang é dividido em quatro fases principais:
 
 ### 1. Analisador Léxico
-Implementado na classe Lexer, converte o código-fonte em tokens. Esta fase é responsável por:
+Implementado na classe Lexer, converte o código-fonte em tokens. 
+Esta fase é responsável por:
 
-Identificar tokens como palavras-chave, identificadores, literais e operadores
-Ignorar espaços em branco e comentários
-Reportar erros léxicos (caracteres inválidos)
+- Identificar tokens como palavras-chave, identificadores, literais e operadores
+- Ignorar espaços em branco e comentários
+- Reportar erros léxicos (caracteres inválidos)
 
 ### 2. Analisador Sintático
-Implementado na classe Parser, constrói a árvore sintática abstrata (AST) a partir dos tokens. Esta fase:
+Implementado na classe Parser, constrói a árvore sintática abstrata (AST) a partir dos tokens. 
+Esta fase:
 
-Verifica se a sequência de tokens forma estruturas válidas da linguagem
-Constrói uma representação hierárquica do programa (AST)
-Reporta erros sintáticos (estruturas inválidas)
+- Verifica se a sequência de tokens forma estruturas válidas da linguagem
+- Constrói uma representação hierárquica do programa (AST)
+- Reporta erros sintáticos (estruturas inválidas)
 ### 3. Analisador Semântico
-Implementado na classe SemanticAnalyzer, verifica a coerência semântica do programa. Esta fase:
+Implementado na classe SemanticAnalyzer, verifica a coerência semântica do programa.
+Esta fase:
 
-Verifica tipos e compatibilidade de operações
-Gerencia escopos e tabela de símbolos
-Verifica se variáveis são declaradas antes de serem usadas
-Verifica se funções retornam valores apropriados
-Reporta erros semânticos (uso incorreto da linguagem)
+- Verifica tipos e compatibilidade de operações
+- Gerencia escopos e tabela de símbolos
+- Verifica se variáveis são declaradas antes de serem usadas
+- Verifica se funções retornam valores apropriados
+- Reporta erros semânticos (uso incorreto da linguagem)
 ### 4. Gerador de Código
-Implementado na classe CodeGenerator, traduz a AST para código assembly x86. Esta fase:
+Implementado na classe CodeGenerator, traduz a AST para código assembly x86. 
+Esta fase:
 
-Gera instruções assembly para cada nó da AST
-Gerencia alocação de memória e registradores
-Implementa chamadas de função e passagem de parâmetros
-Produz um arquivo assembly executável
+- Gera instruções assembly para cada nó da AST
+- Gerencia alocação de memória e registradores
+- Implementa chamadas de função e passagem de parâmetros
+- Produz um arquivo assembly executável
 
 ## Estrutura do Projeto
 ```
@@ -159,6 +163,7 @@ Isso gerará um arquivo assembly (.asm) que pode ser montado e executado em um s
 
 ### Exemplos
 #### Fatorial
+````
 // factorial.macs
 func fatorial(n: int): int {
  var resultado: int = 1;
@@ -174,7 +179,7 @@ input(numero);
 
 var fat: int = fatorial(numero);
 print("O fatorial de " + numero + " é " + fat);
-
+````
 #### Verificador de Paridade
 ````
 // paridade.macs
@@ -240,11 +245,11 @@ O gerador de código também utiliza o padrão visitor para percorrer a AST e ge
 - Chamadas de função e retorno de valores
 
 ### Extensões Implementadas
-Além dos requisitos básicos, este compilador implementa as seguintes extensões:
+- Além dos requisitos básicos, este compilador implementa as seguintes extensões:
 
-Operador de módulo (%): Adicionamos suporte ao operador de módulo, que é útil para muitas operações matemáticas como verificação de paridade e cálculos de resto.
+- Operador de módulo (%): Adicionamos suporte ao operador de módulo, que é útil para muitas operações matemáticas como verificação de paridade e cálculos de resto.
 
-Mensagens de erro detalhadas: O compilador fornece mensagens de erro detalhadas com informações sobre a linha e coluna onde o erro ocorreu, facilitando a depuração de programas MACSLang.
+- Mensagens de erro detalhadas: O compilador fornece mensagens de erro detalhadas com informações sobre a linha e coluna onde o erro ocorreu, facilitando a depuração de programas MACSLang.
 
-Autor
-Sânzio de Jesus Ribeiro
+Autor:
+  Sânzio de Jesus Ribeiro
