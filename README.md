@@ -82,6 +82,43 @@ Gerencia alocação de memória e registradores
 Implementa chamadas de função e passagem de parâmetros
 Produz um arquivo assembly executável
 
+## Estrutura do Projeto
+```
+MACSLangCompiler/
+├── src/
+│   ├── com/
+│   │   ├── macslang/
+│   │   │   ├── Main.java                     # Ponto de entrada do compilador
+│   │   │   ├── lexer/
+│   │   │   │   ├── Lexer.java                # Analisador léxico
+│   │   │   │   ├── Token.java                # Representa tokens
+│   │   │   │   ├── TokenType.java            # Tipos de tokens
+│   │   │   │   ├── LexerException.java       # Exceções do analisador léxico
+│   │   │   ├── parser/
+│   │   │   │   ├── Parser.java               # Analisador sintático
+│   │   │   │   ├── ParserException.java      # Exceções do analisador sintático
+│   │   │   │   ├── ast/                      # Árvore Sintática Abstrata (AST)
+│   │   │   │   │   ├── Node.java             # Interface base para nós da AST
+│   │   │   │   │   ├── NodeVisitor.java      # Padrão visitor para AST
+│   │   │   │   │   ├── Program.java          # Nó raiz do programa
+│   │   │   │   │   ├── expression/           # Expressões
+│   │   │   │   │   ├── statement/            # Declarações
+│   │   │   ├── semantic/
+│   │   │   │   ├── SemanticAnalyzer.java     # Analisador semântico
+│   │   │   │   ├── SymbolTable.java          # Tabela de símbolos
+│   │   │   │   ├── Symbol.java               # Representa símbolos
+│   │   │   │   ├── Type.java                 # Tipos da linguagem
+│   │   │   │   ├── SemanticException.java    # Exceções semânticas
+│   │   │   ├── codegen/
+│   │   │   │   ├── CodeGenerator.java        # Gerador de código
+│   │   │   │   ├── X86Instruction.java       # Representa instruções x86
+│   │   │   │   ├── AssemblyWriter.java       # Escritor de código assembly
+│   │   │   ├── util/
+│   │   │   │   ├── FileHandler.java          # Manipulação de arquivos
+│   │   │   │   ├── ErrorReporter.java        # Relatório de erros
+├── examples/                                 # Exemplos de programas MACSLang
+````
+
 ### Como Compilar e Executar
 
 #### Pré-requisitos
@@ -121,6 +158,7 @@ var fat: int = fatorial(numero);
 print("O fatorial de " + numero + " é " + fat);
 
 #### Verificador de Paridade
+````
 // paridade.macs
 func ehPar(n: int): bool {
  return (n % 2) == 0;
@@ -135,7 +173,9 @@ if (ehPar(num)) {
 } else {
  print(num + " é ímpar");
 }
+````
 #### Verificador de Números Primos
+````
 // primo.macs
 func ehPrimo(n: int): bool {
  if (n <= 1) {
@@ -162,7 +202,7 @@ if (ehPrimo(num)) {
 } else {
  print(num + " não é primo");
 }
-
+````
 ## Implementação Detalhada
 ### Analisador Léxico
 O analisador léxico utiliza um autômato finito para reconhecer tokens. Ele lê o código-fonte caractere por caractere e os agrupa em tokens significativos. Cada token contém informações sobre seu tipo, valor literal, e posição no código (linha e coluna).
