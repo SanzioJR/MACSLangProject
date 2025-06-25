@@ -161,7 +161,80 @@ java -cp bin com.macslang.Main <arquivo.macs>
 java -cp bin com.macslang.Main examples/factorial.macs
 Isso gerará um arquivo assembly (.asm) que pode ser montado e executado em um sistema x86.
 
-### Exemplos
+## Gramática
+````
+⟨PROGRAM⟩ → ⟨DECLARATION⟩*
+
+⟨DECLARATION⟩ → ⟨VAR-DECL⟩ | ⟨FUNC-DECL⟩ | ⟨STATEMENT⟩
+
+⟨VAR-DECL⟩ → var ⟨IDENTIFIER⟩ : ⟨TYPE⟩ (= ⟨EXPRESSION⟩)? ;
+
+⟨FUNC-DECL⟩ → func ⟨IDENTIFIER⟩ ( ⟨PARAMETERS⟩? ) : ⟨TYPE⟩ ⟨BLOCK⟩
+
+⟨PARAMETERS⟩ → ⟨PARAMETER⟩ (, ⟨PARAMETER⟩)*
+⟨PARAMETER⟩ → ⟨IDENTIFIER⟩ : ⟨TYPE⟩
+
+⟨TYPE⟩ → int | float | char | bool | string
+
+⟨STATEMENT⟩ → ⟨IF-STMT⟩ | ⟨WHILE-STMT⟩ | ⟨FOR-STMT⟩ | ⟨RETURN-STMT⟩
+| ⟨PRINT-STMT⟩ | ⟨INPUT-STMT⟩ | ⟨BLOCK⟩ | ⟨EXPR-STMT⟩
+
+⟨BLOCK⟩ → { ⟨DECLARATION⟩* }
+
+⟨IF-STMT⟩ → if ( ⟨EXPRESSION⟩ ) ⟨STATEMENT⟩ (else ⟨STATEMENT⟩)?
+
+⟨WHILE-STMT⟩ → while ( ⟨EXPRESSION⟩ ) ⟨STATEMENT⟩
+
+⟨FOR-STMT⟩ → for ( (⟨VAR-DECL⟩ | ⟨EXPR-STMT⟩ | ;) ⟨EXPRESSION⟩? ; ⟨EXPRESSION⟩? ) ⟨STATEMENT⟩
+
+⟨RETURN-STMT⟩ → return ⟨EXPRESSION⟩? ;
+
+⟨PRINT-STMT⟩ → print ( ⟨EXPRESSION⟩ ) ;
+
+⟨INPUT-STMT⟩ → input ( ⟨IDENTIFIER⟩ ) ;
+
+⟨EXPR-STMT⟩ → ⟨EXPRESSION⟩ ;
+
+⟨EXPRESSION⟩ → ⟨ASSIGNMENT⟩
+
+⟨ASSIGNMENT⟩ → ⟨IDENTIFIER⟩ = ⟨ASSIGNMENT⟩ | ⟨LOGIC-OR⟩
+
+⟨LOGIC-OR⟩ → ⟨LOGIC-AND⟩ (|| ⟨LOGIC-AND⟩)*
+
+⟨LOGIC-AND⟩ → ⟨EQUALITY⟩ (&& ⟨EQUALITY⟩)*
+
+⟨EQUALITY⟩ → ⟨COMPARISON⟩ ((== | !=) ⟨COMPARISON⟩)*
+
+⟨COMPARISON⟩ → ⟨TERM⟩ ((< | <= | > | >=) ⟨TERM⟩)*
+
+⟨TERM⟩ → ⟨FACTOR⟩ ((+ | -) ⟨FACTOR⟩)*
+
+⟨FACTOR⟩ → ⟨UNARY⟩ ((* | / | %) ⟨UNARY⟩)*
+
+⟨UNARY⟩ → (! | -) ⟨UNARY⟩ | ⟨CALL⟩
+
+⟨CALL⟩ → ⟨PRIMARY⟩ (( ⟨ARGUMENTS⟩? ))*
+
+⟨ARGUMENTS⟩ → ⟨EXPRESSION⟩ (, ⟨EXPRESSION⟩)*
+
+⟨PRIMARY⟩ → ⟨LITERAL⟩ | ⟨IDENTIFIER⟩ | ( ⟨EXPRESSION⟩ )
+
+⟨LITERAL⟩ → ⟨INTEGER⟩ | ⟨FLOAT⟩ | ⟨CHAR⟩ | ⟨STRING⟩ | ⟨BOOLEAN⟩
+
+⟨IDENTIFIER⟩ → [a-zA-Z_][a-zA-Z0-9_]*
+
+⟨INTEGER⟩ → [0-9]+
+
+⟨FLOAT⟩ → [0-9]+ . [0-9]+
+
+⟨CHAR⟩ → ' [qualquer caractere] '
+
+⟨STRING⟩ → " [qualquer caractere]* "
+
+⟨BOOLEAN⟩ → true | false
+````
+
+## Exemplos
 #### Fatorial
 ````
 // factorial.macs
